@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -9,12 +9,14 @@
     :root {
       --bg: #0f0f0f;
       --card: #181818;
+      --card-light: #242424;
       --border: #333;
       --text: #fff;
       --muted: #aaa;
       --red: #e50914;
       --red-hover: #ff2633;
-      --delete: #980014;
+      --danger: #a90018;
+      --green: #16803c;
     }
 
     * {
@@ -50,7 +52,7 @@
       gap: 15px;
       min-height: 70px;
       padding: 14px 5%;
-      background: rgba(15, 15, 15, 0.96);
+      background: rgba(15, 15, 15, .96);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
     }
@@ -81,7 +83,7 @@
       color: white;
       background: var(--red);
       border-radius: 7px;
-      transition: 0.2s;
+      transition: .2s;
     }
 
     .admin-button:hover,
@@ -121,8 +123,8 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      transition: 0.2s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      transition: .2s;
     }
 
     .video-card:hover {
@@ -150,7 +152,7 @@
       display: grid;
       place-items: center;
       pointer-events: none;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, .2);
     }
 
     .play-icon {
@@ -159,7 +161,7 @@
       width: 58px;
       height: 58px;
       padding-right: 3px;
-      background: rgba(229, 9, 20, 0.95);
+      background: rgba(229, 9, 20, .95);
       border-radius: 50%;
       font-size: 25px;
     }
@@ -182,13 +184,12 @@
       margin-top: 13px;
       padding: 10px;
       color: white;
-      background: var(--delete);
+      background: var(--danger);
       border-radius: 6px;
-      transition: 0.2s;
     }
 
     .delete-button:hover {
-      background: #d0001b;
+      background: #dc001d;
     }
 
     .empty-state {
@@ -205,6 +206,11 @@
       font-size: 42px;
     }
 
+    .loading {
+      color: var(--muted);
+      text-align: center;
+    }
+
     .modal {
       position: fixed;
       inset: 0;
@@ -213,7 +219,7 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0, 0, 0, .82);
     }
 
     .modal.active {
@@ -229,7 +235,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, .6);
     }
 
     .close-button {
@@ -239,7 +245,7 @@
       width: 34px;
       height: 34px;
       color: white;
-      background: #292929;
+      background: var(--card-light);
       border-radius: 50%;
       font-size: 22px;
     }
@@ -256,7 +262,6 @@
     .form-group label {
       display: block;
       margin-bottom: 8px;
-      color: #eee;
       font-size: 14px;
     }
 
@@ -282,23 +287,29 @@
       width: 100%;
     }
 
-    .error-message,
-    .success-message {
+    .message {
       display: none;
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 6px;
+      margin-top: 13px;
+      padding: 12px;
+      border-radius: 7px;
+      line-height: 1.7;
+      text-align: center;
       font-size: 14px;
     }
 
     .error-message {
-      color: #ffbaba;
-      background: rgba(176, 0, 32, 0.3);
+      color: #ffc0c0;
+      background: rgba(176, 0, 32, .3);
     }
 
     .success-message {
-      color: #b7f5c4;
-      background: rgba(20, 130, 55, 0.3);
+      color: #b9f6c7;
+      background: rgba(20, 130, 55, .3);
+    }
+
+    .uploading-message {
+      color: #ffe7a3;
+      background: rgba(160, 105, 0, .3);
     }
 
     .watch-modal .modal-content {
@@ -316,11 +327,6 @@
     .watch-title {
       margin-top: 15px;
       font-size: 20px;
-    }
-
-    .loading {
-      color: var(--muted);
-      text-align: center;
     }
 
     @media (max-width: 600px) {
@@ -374,7 +380,6 @@
     </section>
   </main>
 
-  <!-- نافذة تسجيل دخول الإدارة -->
   <div class="modal" id="pinModal">
     <div class="modal-content">
       <button class="close-button" data-close="pinModal">×</button>
@@ -398,19 +403,18 @@
           متابعة
         </button>
 
-        <div class="error-message" id="pinError">
+        <div class="message error-message" id="pinError">
           رمز الإدارة غير صحيح.
         </div>
       </form>
     </div>
   </div>
 
-  <!-- نافذة رفع الفيديو -->
   <div class="modal" id="uploadModal">
     <div class="modal-content">
       <button class="close-button" data-close="uploadModal">×</button>
 
-      <h2 class="modal-title">نشر فيديو جديد</h2>
+      <h2 class="modal-title">رفع فيديو جديد</h2>
 
       <form id="uploadForm">
         <div class="form-group">
@@ -419,60 +423,90 @@
           <input
             id="videoTitle"
             type="text"
-            placeholder="اكتب عنوان الفيديو"
             maxlength="120"
+            placeholder="اكتب عنوان الفيديو"
             required
           >
         </div>
 
         <div class="form-group">
-          <label for="videoFile">اختيار ملف الفيديو</label>
+          <label for="videoFile">اختيار ملف الفيديو MP4</label>
 
           <input
             id="videoFile"
             class="file-input"
             type="file"
-            accept="video/mp4,video/webm,video/ogg"
+            accept="video/mp4"
             required
           >
         </div>
 
-        <button class="publish-button" type="submit">
-          نشر الفيديو
+        <button class="publish-button" id="publishButton" type="submit">
+          رفع ونشر الفيديو
         </button>
 
-        <div class="error-message" id="uploadError"></div>
+        <div class="message uploading-message" id="uploadingMessage">
+          جاري رفع المقطع، يرجى الانتظار...
+        </div>
 
-        <div class="success-message" id="uploadSuccess">
-          تم نشر الفيديو بنجاح.
+        <div class="message error-message" id="uploadError"></div>
+
+        <div class="message success-message" id="uploadSuccess">
+          تم رفع ونشر الفيديو بنجاح.
         </div>
       </form>
     </div>
   </div>
 
-  <!-- نافذة مشاهدة الفيديو -->
   <div class="modal watch-modal" id="watchModal">
     <div class="modal-content">
       <button class="close-button" data-close="watchModal">×</button>
 
       <video
-        class="watch-video"
         id="watchVideo"
+        class="watch-video"
         controls
         playsinline
       ></video>
 
-      <h2 class="watch-title" id="watchTitle"></h2>
+      <h2 id="watchTitle" class="watch-title"></h2>
     </div>
   </div>
 
-  <script>
-    const ADMIN_PIN = "oplkoplk";
-    const DATABASE_NAME = "mustafa-game-over-videos";
-    const STORE_NAME = "videos";
+  <!-- مكتبات Firebase -->
+  <script type="module">
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-    let database;
+    import {
+      getDatabase,
+      ref,
+      push,
+      onValue,
+      remove
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    /*
+      ضع إعدادات Firebase الخاصة بك هنا
+    */
+    const firebaseConfig = {
+      apiKey: "ضع_مفتاح_API_هنا",
+      authDomain: "ضع_اسم_المشروع.firebaseapp.com",
+      databaseURL: "https://ضع_اسم_المشروع-default-rtdb.firebaseio.com",
+      projectId: "ضع_معرف_المشروع_هنا",
+      storageBucket: "ضع_اسم_المشروع.firebasestorage.app",
+      messagingSenderId: "ضع_رقم_المرسل_هنا",
+      appId: "ضع_معرف_التطبيق_هنا"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const ADMIN_PIN = "oplkoplk";
+    const CATBOX_API = "https://catbox.moe/user/api.php";
+
     let isAdmin = false;
+    let videos = [];
 
     const adminButton = document.getElementById("adminButton");
     const pinModal = document.getElementById("pinModal");
@@ -486,6 +520,12 @@
     const watchVideo = document.getElementById("watchVideo");
     const watchTitle = document.getElementById("watchTitle");
 
+    const publishButton = document.getElementById("publishButton");
+    const pinError = document.getElementById("pinError");
+    const uploadError = document.getElementById("uploadError");
+    const uploadSuccess = document.getElementById("uploadSuccess");
+    const uploadingMessage = document.getElementById("uploadingMessage");
+
     function openModal(modal) {
       modal.classList.add("active");
     }
@@ -494,9 +534,9 @@
       modal.classList.remove("active");
     }
 
-    function showMessage(element, message = "") {
-      if (message) {
-        element.textContent = message;
+    function showMessage(element, text = "") {
+      if (text) {
+        element.textContent = text;
       }
 
       element.style.display = "block";
@@ -506,84 +546,10 @@
       element.style.display = "none";
     }
 
-    function openDatabase() {
-      return new Promise(function (resolve, reject) {
-        const request = indexedDB.open(DATABASE_NAME, 1);
-
-        request.onupgradeneeded = function () {
-          const db = request.result;
-
-          if (!db.objectStoreNames.contains(STORE_NAME)) {
-            db.createObjectStore(STORE_NAME, {
-              keyPath: "id",
-              autoIncrement: true
-            });
-          }
-        };
-
-        request.onsuccess = function () {
-          database = request.result;
-          resolve(database);
-        };
-
-        request.onerror = function () {
-          reject(request.error);
-        };
-      });
-    }
-
-    function getAllVideos() {
-      return new Promise(function (resolve, reject) {
-        const transaction = database.transaction(STORE_NAME, "readonly");
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.getAll();
-
-        request.onsuccess = function () {
-          resolve(request.result.reverse());
-        };
-
-        request.onerror = function () {
-          reject(request.error);
-        };
-      });
-    }
-
-    function saveVideo(videoData) {
-      return new Promise(function (resolve, reject) {
-        const transaction = database.transaction(STORE_NAME, "readwrite");
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.add(videoData);
-
-        request.onsuccess = function () {
-          resolve();
-        };
-
-        request.onerror = function () {
-          reject(request.error);
-        };
-      });
-    }
-
-    function deleteVideo(videoId) {
-      return new Promise(function (resolve, reject) {
-        const transaction = database.transaction(STORE_NAME, "readwrite");
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.delete(videoId);
-
-        request.onsuccess = function () {
-          resolve();
-        };
-
-        request.onerror = function () {
-          reject(request.error);
-        };
-      });
-    }
-
-    function renderVideos(videos) {
+    function renderVideos() {
       videoGrid.innerHTML = "";
 
-      if (videos.length === 0) {
+      if (!videos.length) {
         videoGrid.innerHTML = `
           <div class="empty-state">
             <div class="empty-icon">🎬</div>
@@ -594,99 +560,126 @@
         return;
       }
 
-      videos.forEach(function (video) {
-        const videoUrl = URL.createObjectURL(video.file);
-        const card = document.createElement("article");
+      [...videos]
+        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+        .forEach(function (video) {
+          const card = document.createElement("article");
+          card.className = "video-card";
 
-        card.className = "video-card";
+          card.innerHTML = `
+            <div class="video-preview">
+              <video
+                src="${video.url}"
+                preload="metadata"
+                muted
+                playsinline>
+              </video>
 
-        card.innerHTML = `
-          <div class="video-preview">
-            <video
-              src="${videoUrl}"
-              preload="metadata"
-              muted
-              playsinline
-            ></video>
-
-            <div class="play-overlay">
-              <div class="play-icon">▶</div>
+              <div class="play-overlay">
+                <div class="play-icon">▶</div>
+              </div>
             </div>
-          </div>
 
-          <div class="video-info">
-            <h3 class="video-title"></h3>
+            <div class="video-info">
+              <h3 class="video-title"></h3>
 
-            ${
-              isAdmin
-                ? `
-                  <button
-                    class="delete-button"
-                    data-id="${video.id}">
-                    حذف الفيديو
-                  </button>
-                `
-                : ""
-            }
-          </div>
-        `;
+              ${
+                isAdmin
+                  ? `
+                    <button class="delete-button">
+                      حذف الفيديو
+                    </button>
+                  `
+                  : ""
+              }
+            </div>
+          `;
 
-        card.querySelector(".video-title").textContent = video.title;
+          card.querySelector(".video-title").textContent = video.title;
 
-        card.addEventListener("click", function (event) {
-          if (event.target.classList.contains("delete-button")) {
-            return;
-          }
-
-          watchVideo.src = videoUrl;
-          watchTitle.textContent = video.title;
-          openModal(watchModal);
-        });
-
-        if (isAdmin) {
-          const deleteButton = card.querySelector(".delete-button");
-
-          deleteButton.addEventListener("click", async function (event) {
-            event.stopPropagation();
-
-            const confirmed = confirm(
-              "هل أنت متأكد من حذف هذا الفيديو؟"
-            );
-
-            if (!confirmed) {
+          card.addEventListener("click", function (event) {
+            if (event.target.classList.contains("delete-button")) {
               return;
             }
 
-            try {
-              await deleteVideo(video.id);
-              await loadVideos();
-            } catch (error) {
-              alert("تعذر حذف الفيديو.");
-            }
+            watchVideo.src = video.url;
+            watchTitle.textContent = video.title;
+            openModal(watchModal);
           });
-        }
 
-        videoGrid.appendChild(card);
-      });
+          if (isAdmin) {
+            card
+              .querySelector(".delete-button")
+              .addEventListener("click", async function (event) {
+                event.stopPropagation();
+
+                const confirmDelete = confirm(
+                  "هل أنت متأكد من حذف هذا الفيديو؟"
+                );
+
+                if (!confirmDelete) {
+                  return;
+                }
+
+                try {
+                  await remove(ref(database, "videos/" + video.id));
+                  alert("تم حذف الفيديو من القائمة.");
+                } catch (error) {
+                  alert("تعذر حذف الفيديو.");
+                }
+              });
+          }
+
+          videoGrid.appendChild(card);
+        });
     }
 
-    async function loadVideos() {
-      try {
-        const videos = await getAllVideos();
-        renderVideos(videos);
-      } catch (error) {
-        videoGrid.innerHTML = `
-          <div class="empty-state">
-            <p>حدث خطأ أثناء تحميل الفيديوهات.</p>
-          </div>
-        `;
+    /*
+      الاستماع إلى قائمة الفيديوهات من Firebase
+    */
+    onValue(ref(database, "videos"), function (snapshot) {
+      const data = snapshot.val() || {};
+
+      videos = Object.entries(data).map(function ([id, video]) {
+        return {
+          id,
+          ...video
+        };
+      });
+
+      renderVideos();
+    });
+
+    /*
+      رفع الملف إلى Catbox
+    */
+    async function uploadToCatbox(file) {
+      const formData = new FormData();
+
+      formData.append("reqtype", "fileupload");
+      formData.append("fileToUpload", file);
+
+      const response = await fetch(CATBOX_API, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error("فشل الاتصال بخدمة رفع الملفات.");
       }
+
+      const directUrl = (await response.text()).trim();
+
+      if (!directUrl.startsWith("http")) {
+        throw new Error("لم يتم الحصول على رابط مباشر للفيديو.");
+      }
+
+      return directUrl;
     }
 
     adminButton.addEventListener("click", function () {
       document.getElementById("adminPin").value = "";
-      hideMessage(document.getElementById("pinError"));
-
+      hideMessage(pinError);
       openModal(pinModal);
       document.getElementById("adminPin").focus();
     });
@@ -695,48 +688,44 @@
       event.preventDefault();
 
       const enteredPin = document.getElementById("adminPin").value;
-      const pinError = document.getElementById("pinError");
 
       if (enteredPin === ADMIN_PIN) {
         isAdmin = true;
-
         hideMessage(pinError);
         closeModal(pinModal);
         openModal(uploadModal);
-
-        loadVideos();
+        renderVideos();
       } else {
-        showMessage(pinError);
+        showMessage(pinError, "رمز الإدارة غير صحيح.");
       }
     });
 
     uploadForm.addEventListener("submit", async function (event) {
       event.preventDefault();
 
-      const titleInput = document.getElementById("videoTitle");
-      const fileInput = document.getElementById("videoFile");
-      const uploadError = document.getElementById("uploadError");
-      const uploadSuccess = document.getElementById("uploadSuccess");
-
-      const title = titleInput.value.trim();
-      const file = fileInput.files[0];
-
       hideMessage(uploadError);
       hideMessage(uploadSuccess);
+
+      const title = document
+        .getElementById("videoTitle")
+        .value
+        .trim();
+
+      const file = document.getElementById("videoFile").files[0];
 
       if (!title || !file) {
         showMessage(
           uploadError,
-          "يرجى إدخال عنوان الفيديو واختيار ملف."
+          "يرجى كتابة العنوان واختيار ملف الفيديو."
         );
 
         return;
       }
 
-      if (!file.type.startsWith("video/")) {
+      if (file.type !== "video/mp4") {
         showMessage(
           uploadError,
-          "يرجى اختيار ملف فيديو صالح."
+          "يرجى اختيار ملف بصيغة MP4 فقط."
         );
 
         return;
@@ -751,28 +740,38 @@
         return;
       }
 
+      publishButton.disabled = true;
+      publishButton.textContent = "جاري الرفع...";
+      showMessage(uploadingMessage);
+
       try {
-        await saveVideo({
-          title: title,
-          file: file,
+        const videoUrl = await uploadToCatbox(file);
+
+        await push(ref(database, "videos"), {
+          title,
+          url: videoUrl,
           createdAt: Date.now()
         });
 
+        hideMessage(uploadingMessage);
         showMessage(uploadSuccess);
-        uploadForm.reset();
 
-        await loadVideos();
+        uploadForm.reset();
 
         setTimeout(function () {
           closeModal(uploadModal);
           hideMessage(uploadSuccess);
-        }, 1000);
+        }, 1200);
 
       } catch (error) {
+        hideMessage(uploadingMessage);
         showMessage(
           uploadError,
-          "تعذر حفظ الفيديو على هذا الجهاز."
+          error.message || "حدث خطأ أثناء رفع الفيديو."
         );
+      } finally {
+        publishButton.disabled = false;
+        publishButton.textContent = "رفع ونشر الفيديو";
       }
     });
 
@@ -795,12 +794,6 @@
     [pinModal, uploadModal, watchModal].forEach(function (modal) {
       modal.addEventListener("click", function (event) {
         if (event.target === modal) {
-          if (modal === watchModal) {
-            watchVideo.pause();
-            watchVideo.removeAttribute("src");
-            watchVideo.load();
-          }
-
           closeModal(modal);
         }
       });
@@ -815,21 +808,6 @@
         watchVideo.pause();
       }
     });
-
-    async function initializeApp() {
-      try {
-        await openDatabase();
-        await loadVideos();
-      } catch (error) {
-        videoGrid.innerHTML = `
-          <div class="empty-state">
-            <p>المتصفح لا يدعم حفظ الفيديوهات محليًا.</p>
-          </div>
-        `;
-      }
-    }
-
-    initializeApp();
   </script>
 
 </body>
