@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حسابات سالار الكركي | Salar Al-Krky</title>
+  <title>حسابات صناع المحتوى</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -21,78 +21,71 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 20px 15px;
+      padding: 30px 15px;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       text-align: center;
     }
 
-    /* Profile Header */
-    .profile-avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff0000, #53fc18, #e1306c);
-      padding: 3px;
-      margin: 0 auto 15px auto;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    }
-
-    .avatar-inner {
-      width: 100%;
-      height: 100%;
-      background-color: #16181f;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: #ffffff;
-      font-weight: bold;
-    }
-
-    .profile-title {
-      font-size: 1.6rem;
+    .main-title {
+      font-size: 1.8rem;
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 25px;
       color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
-    .profile-bio {
-      font-size: 0.95rem;
-      color: #a0a5b5;
+    /* Section Styling */
+    .section-block {
       margin-bottom: 30px;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+    }
+
+    .creator-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      margin: 35px 0;
+      border: none;
     }
 
     /* Links Section */
     .links-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .link-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 20px;
+      padding: 13px 18px;
       background-color: #161821;
       border: 1px solid #232734;
-      border-radius: 14px;
+      border-radius: 12px;
       color: #ffffff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .link-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       border-color: rgba(255, 255, 255, 0.2);
     }
@@ -100,18 +93,18 @@
     .link-info {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .link-icon {
-      font-size: 1.4rem;
-      width: 28px;
+      font-size: 1.3rem;
+      width: 26px;
       display: flex;
       justify-content: center;
     }
 
     .arrow-icon {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #606880;
       transition: transform 0.2s ease;
     }
@@ -121,35 +114,20 @@
       transform: translateX(-4px);
     }
 
-    /* Platform Specific Styling */
-    .youtube-main:hover {
-      border-color: #ff0000;
-      background: linear-gradient(90deg, #161821 80%, rgba(255, 0, 0, 0.15));
-    }
+    /* Platform Colors */
+    .youtube-main:hover { border-color: #ff0000; background: linear-gradient(90deg, #161821 80%, rgba(255, 0, 0, 0.15)); }
     .youtube-main .link-icon { color: #ff0000; }
 
-    .youtube-sub:hover {
-      border-color: #ff4d4d;
-      background: linear-gradient(90deg, #161821 80%, rgba(255, 77, 77, 0.15));
-    }
+    .youtube-sub:hover { border-color: #ff4d4d; background: linear-gradient(90deg, #161821 80%, rgba(255, 77, 77, 0.15)); }
     .youtube-sub .link-icon { color: #ff4d4d; }
 
-    .tiktok:hover {
-      border-color: #00f2fe;
-      background: linear-gradient(90deg, #161821 80%, rgba(0, 242, 254, 0.15));
-    }
+    .tiktok:hover { border-color: #00f2fe; background: linear-gradient(90deg, #161821 80%, rgba(0, 242, 254, 0.15)); }
     .tiktok .link-icon { color: #00f2fe; }
 
-    .instagram:hover {
-      border-color: #e1306c;
-      background: linear-gradient(90deg, #161821 80%, rgba(225, 48, 108, 0.15));
-    }
+    .instagram:hover { border-color: #e1306c; background: linear-gradient(90deg, #161821 80%, rgba(225, 48, 108, 0.15)); }
     .instagram .link-icon { color: #e1306c; }
 
-    .kick:hover {
-      border-color: #53fc18;
-      background: linear-gradient(90deg, #161821 80%, rgba(83, 252, 24, 0.15));
-    }
+    .kick:hover { border-color: #53fc18; background: linear-gradient(90deg, #161821 80%, rgba(83, 252, 24, 0.15)); }
     .kick .link-icon { color: #53fc18; }
 
     /* Footer */
@@ -157,73 +135,139 @@
       margin-top: 40px;
       font-size: 0.85rem;
       color: #505668;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Header -->
-    <div class="profile-avatar">
-      <div class="avatar-inner">SK</div>
+    
+    <h1 class="main-title">حسابات صناع المحتوى ⚡</h1>
+
+    <!-- 1. Salar Al-Karky -->
+    <div class="section-block">
+      <div class="section-header">
+        <h2 class="creator-name">سالار الكركي Salar Al-Karky</h2>
+      </div>
+      <div class="links-wrapper">
+        <a href="https://youtube.com/@alkrky?si=TVMO_2MHY-RL7RHE" target="_blank" rel="noopener" class="link-card youtube-main">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>يوتيوب سالار</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://youtube.com/@salaralkrky2395?si=sz2LUI69l59LziTq" target="_blank" rel="noopener" class="link-card youtube-sub">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>قناة اليوتيوب الثانية</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://kick.com/alkrky99" target="_blank" rel="noopener" class="link-card kick">
+          <div class="link-info"><i class="fa-solid fa-bolt link-icon"></i><span>بثوث كيك (Kick)</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.tiktok.com/@salaralkrky?_r=1&_t=ZS-99Wc6zdfkou" target="_blank" rel="noopener" class="link-card tiktok">
+          <div class="link-info"><i class="fa-brands fa-tiktok link-icon"></i><span>التيك توك</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.instagram.com/alkrky99?stkn=NHpzcHpiZG1wY3o" target="_blank" rel="noopener" class="link-card instagram">
+          <div class="link-info"><i class="fa-brands fa-instagram link-icon"></i><span>الإنستغرام</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+      </div>
     </div>
-    <h1 class="profile-title">سالار الكركي</h1>
-    <p class="profile-bio">جميع حسابات سالار الرسمية تجدها هنا ⚡</p>
 
-    <!-- Links List -->
-    <div class="links-wrapper">
+    <hr class="divider">
 
-      <!-- YouTube Main -->
-      <a href="https://youtube.com/@alkrky?si=TVMO_2MHY-RL7RHE" target="_blank" rel="noopener" class="link-card youtube-main">
-        <div class="link-info">
-          <i class="fa-brands fa-youtube link-icon"></i>
-          <span>قناة يوتيوب سالار</span>
-        </div>
-        <i class="fa-solid fa-chevron-left arrow-icon"></i>
-      </a>
+    <!-- 2. Mustafa GO -->
+    <div class="section-block">
+      <div class="section-header">
+        <h2 class="creator-name">مصطفى Mustafa GO</h2>
+      </div>
+      <div class="links-wrapper">
+        <a href="https://youtube.com/@mustafago?si=M1vKQKAYzsp13ZlL" target="_blank" rel="noopener" class="link-card youtube-main">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>يوتيوب مصطفى</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://youtube.com/@mustafajamal9751?si=yGTpapM1cSjmLkOo" target="_blank" rel="noopener" class="link-card youtube-sub">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>قناة اليوتيوب الثانية</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://kick.com/mustafa_go" target="_blank" rel="noopener" class="link-card kick">
+          <div class="link-info"><i class="fa-solid fa-bolt link-icon"></i><span>بثوث كيك (Kick)</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.tiktok.com/@mustafa1go?_r=1&_t=ZS-99ZHusNe6fU" target="_blank" rel="noopener" class="link-card tiktok">
+          <div class="link-info"><i class="fa-brands fa-tiktok link-icon"></i><span>التيك توك</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.instagram.com/mustafagameover?stkn=eDFobTV2YWRscGdu" target="_blank" rel="noopener" class="link-card instagram">
+          <div class="link-info"><i class="fa-brands fa-instagram link-icon"></i><span>الإنستغرام</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+      </div>
+    </div>
 
-      <!-- YouTube Second -->
-      <a href="https://youtube.com/@salaralkrky2395?si=sz2LUI69l59LziTq" target="_blank" rel="noopener" class="link-card youtube-sub">
-        <div class="link-info">
-          <i class="fa-brands fa-youtube link-icon"></i>
-          <span>قناة اليوتيوب الثانية</span>
-        </div>
-        <i class="fa-solid fa-chevron-left arrow-icon"></i>
-      </a>
+    <hr class="divider">
 
-      <!-- Kick -->
-      <a href="https://kick.com/alkrky99" target="_blank" rel="noopener" class="link-card kick">
-        <div class="link-info">
-          <i class="fa-solid fa-bolt link-icon"></i>
-          <span>بثوث كيك (Kick)</span>
-        </div>
-        <i class="fa-solid fa-chevron-left arrow-icon"></i>
-      </a>
+    <!-- 3. BEROiq -->
+    <div class="section-block">
+      <div class="section-header">
+        <h2 class="creator-name">بيرو BEROiq</h2>
+      </div>
+      <div class="links-wrapper">
+        <a href="https://youtube.com/@beroiq?si=mqpsHsW9x0xp_WFj" target="_blank" rel="noopener" class="link-card youtube-main">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>يوتيوب بيرو</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://youtube.com/@beroxplus?si=8-CYOC5oToxfY-Df" target="_blank" rel="noopener" class="link-card youtube-sub">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>قناة اليوتيوب الثانية</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://kick.com/beroiq" target="_blank" rel="noopener" class="link-card kick">
+          <div class="link-info"><i class="fa-solid fa-bolt link-icon"></i><span>بثوث كيك (Kick)</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.tiktok.com/@beroiq?_r=1&_t=ZS-99ZISxnSHjQ" target="_blank" rel="noopener" class="link-card tiktok">
+          <div class="link-info"><i class="fa-brands fa-tiktok link-icon"></i><span>التيك توك</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.instagram.com/hassan_methaq?stkn=MTk2YTJ3eGo0OTZnag==" target="_blank" rel="noopener" class="link-card instagram">
+          <div class="link-info"><i class="fa-brands fa-instagram link-icon"></i><span>الإنستغرام</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+      </div>
+    </div>
 
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@salaralkrky?_r=1&_t=ZS-99Wc6zdfkou" target="_blank" rel="noopener" class="link-card tiktok">
-        <div class="link-info">
-          <i class="fa-brands fa-tiktok link-icon"></i>
-          <span>حساب التيك توك</span>
-        </div>
-        <i class="fa-solid fa-chevron-left arrow-icon"></i>
-      </a>
+    <hr class="divider">
 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/alkrky99?stkn=NHpzcHpiZG1wY3o" target="_blank" rel="noopener" class="link-card instagram">
-        <div class="link-info">
-          <i class="fa-brands fa-instagram link-icon"></i>
-          <span>حساب الإنستغرام</span>
-        </div>
-        <i class="fa-solid fa-chevron-left arrow-icon"></i>
-      </a>
-
+    <!-- 4. Mohammed Al-Basha -->
+    <div class="section-block">
+      <div class="section-header">
+        <h2 class="creator-name">محمد الباشا</h2>
+      </div>
+      <div class="links-wrapper">
+        <a href="https://youtube.com/@mohammedalbasha3159?si=sOqaHSbTp7s7VxI-" target="_blank" rel="noopener" class="link-card youtube-main">
+          <div class="link-info"><i class="fa-brands fa-youtube link-icon"></i><span>يوتيوب محمد الباشا</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://kick.com/bashaiq1" target="_blank" rel="noopener" class="link-card kick">
+          <div class="link-info"><i class="fa-solid fa-bolt link-icon"></i><span>بثوث كيك (Kick)</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.tiktok.com/@m.albasha2?_r=1&_t=ZS-99ZIp45kYYn" target="_blank" rel="noopener" class="link-card tiktok">
+          <div class="link-info"><i class="fa-brands fa-tiktok link-icon"></i><span>التيك توك</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+        <a href="https://www.instagram.com/m.albasha2?stkn=OWF1M2I4ODB6Z3Vi" target="_blank" rel="noopener" class="link-card instagram">
+          <div class="link-info"><i class="fa-brands fa-instagram link-icon"></i><span>الإنستغرام</span></div>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
+        </a>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer>
-      © جميع الحقوق محفوظة لـ سالار الكركي
+      جميع الحقوق محفوظة
     </footer>
+
   </div>
 
 </body>
